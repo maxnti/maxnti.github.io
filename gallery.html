@@ -1,73 +1,143 @@
-<script>
-function initMasonry() {
-  const grid = document.querySelector('.gallery-grid');
-  if (!grid) return;
-
-  const gap = 16;
-  let columnCount;
-
-  if (window.innerWidth < 700)        columnCount = 1;
-  else if (window.innerWidth < 1000)  columnCount = 2;
-  else                                columnCount = 3;   // ← feel free to use 3–4 on wide screens
-
-  const columns = new Array(columnCount).fill(0);
-  const imgs = [...grid.querySelectorAll('img')];
-
-  // Force images to be position:absolute early (CSS can do this too)
-  imgs.forEach(img => {
-    img.style.position = 'absolute';
-    img.style.width = '100%';           // let natural aspect ratio work
-    img.style.height = 'auto';
-  });
-
-  grid.style.position = 'relative';
-
-  // Wait until ALL images are actually loaded before layout
-  let loadedCount = 0;
-  const total = imgs.length;
-
-  function layoutWhenReady() {
-    loadedCount++;
-    if (loadedCount === total) {
-      doLayout();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Maxinwood</title>
+  
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-  }
 
-  function doLayout() {
-    const gridWidth = grid.clientWidth;
-    const colWidth = (gridWidth - gap * (columnCount - 1)) / columnCount;
-
-    imgs.forEach(img => {
-      // We no longer force fixed px width → CSS width:100% takes over
-      const minCol = columns.indexOf(Math.min(...columns));
-
-      img.style.left = `${(colWidth + gap) * minCol}px`;
-      img.style.top  = `${columns[minCol]}px`;
-
-      // Now img.height is real because image is loaded
-      columns[minCol] += img.naturalHeight + gap;
-    });
-
-    grid.style.height = `${Math.max(...columns)}px`;
-  }
-
-  // Attach load listeners
-  imgs.forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) {
-      layoutWhenReady();
-    } else {
-      img.addEventListener('load', layoutWhenReady, { once: true });
-      img.addEventListener('error', layoutWhenReady, { once: true }); // don't hang on broken images
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
     }
-  });
 
-  // If no images or all already cached → layout immediately
-  if (loadedCount === total) {
-    doLayout();
-  }
-}
+    /* Navigation – matches your dark theme */
+    header {
+      background: #111;
+      border-bottom: 1px solid #222;
+      width: 100%;
+    }
 
-// Run on load + resize
-window.addEventListener('load', initMasonry);
-window.addEventListener('resize', initMasonry);
-</script>
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 1rem;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #fff;
+    }
+
+    /* Gallery container */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .gallery-container {
+      max-width: 90%;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+      opacity: 0.92;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .gallery-container {
+        max-width: 94%;
+        padding: 30px 16px;
+      }
+      .nav-inner {
+        padding: 20px 20px;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 16px;
+      }
+      .gallery-grid {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-inner">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="panoramas.html">Panoramas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <section class="gallery-container">
+      <div class="gallery-grid">
+        <img src="images/1.jpg" alt="Photo 1">
+        <img src="images/2.jpg" alt="Photo 2">
+        <img src="images/3.jpg" alt="Photo 3">
+        <img src="images/4.jpg" alt="Photo 4">
+        <img src="images/5.jpg" alt="Photo 5">
+        <img src="images/6.jpg" alt="Photo 6">
+        <!-- Add more <img> tags here if you have more photos -->
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
