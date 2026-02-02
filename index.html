@@ -54,6 +54,8 @@ main {
 
 main .content {
   margin-top: 40px;
+  max-width: 900px; /* wider text container */
+  width: 100%;
 }
 
 main h1 {
@@ -64,14 +66,13 @@ main h1 {
 
 main p {
   font-size: 1.3em;
-  max-width: 600px;
-  margin: 0 auto;
   line-height: 1.8;
+  white-space: nowrap; /* keep on one line */
 }
 
 main img {
   margin-top: 40px;
-  max-width: 90%;
+  max-width: 67.5%; /* 25% smaller than previous 90% */
   height: auto;
   border-radius: 4px;
 }
@@ -148,6 +149,14 @@ footer {
   .hamburger.open span:nth-child(3) {
     transform: rotate(-45deg);
     top: 50%;
+  }
+
+  main p {
+    white-space: normal; /* allow wrap on mobile */
+  }
+
+  main img {
+    max-width: 90%;
   }
 }
 </style>
