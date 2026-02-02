@@ -4,213 +4,146 @@
   <meta charset="UTF-8">
   <title>Gallery | Maxinwood</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: #333;
-      color: #eee;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    /* Header & Navigation – matched to index */
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px 0;
-    }
-    nav {
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-family: "Baskerville", "Times New Roman", serif;
-      font-weight: 300;
-      font-size: 1.1em;
-    }
-    nav a:hover,
-    nav a.active {
-      text-decoration: underline;
-      color: white;
-    }
-    /* Gallery container – mid-width compromise */
-    main {
-      max-width: 1350px;               
-      margin: 0 auto;
-      padding: 40px 18px;              
-    }
-    .gallery-container {
-      max-width: 93%;                  
-      margin: 0 auto;
-      padding: 40px 0;
-    }
-    .gallery-grid {
-      column-gap: 20px;
-      orphans: 1;
-      widows: 1;
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      break-inside: avoid-column;
-      page-break-inside: avoid;
-      transition: transform 0.25s ease;
-      cursor: pointer;
-    }
-    .gallery-grid img:hover {
-      transform: scale(1.02);
-    }
-    /* Two-column masonry on desktop/web */
-    @media (min-width: 1000px) {
-      .gallery-grid { column-count: 2; }
-    }
-    @media (min-width: 700px) and (max-width: 999px) {
-      .gallery-grid { column-count: 2; }
-    }
-    @media (max-width: 699px) {
-      .gallery-grid { column-count: 1; }
-    }
-    /* Mobile tweaks – keep wide/fuller feel */
-    @media (max-width: 900px) {
-      .gallery-container {
-        max-width: 96%;
-        padding: 30px 2% 40px 2%;
-      }
-      nav a { margin: 0 12px; font-size: 1em; }
-    }
-    @media (max-width: 600px) {
-      nav { padding: 10px; }
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-      main {
-        padding: 20px 8px;
-      }
-    }
-    /* Ultra-wide screens – softer pull-back */
-    @media (min-width: 1600px) {
-      main {
-        padding: 40px 20px;
-      }
-      .gallery-container {
-        max-width: 92%;
-      }
-    }
-    /* LIGHTBOX / MODAL */
-    #lightbox {
+    /* Hamburger menu for mobile only */
+    .hamburger {
       display: none;
       position: fixed;
-      inset: 0;
-      background: #333;
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
+      top: 20px;
+      right: 20px;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
       flex-direction: column;
-      padding: 20px;
+      justify-content: space-between;
     }
-    #lightbox.active {
-      display: flex;
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 80vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
     }
-    #lightbox .caption {
-      color: #eee;
-      font-size: 1.2rem;
-      margin-top: 16px;
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #222;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      nav.open { display: flex; }
+      nav a {
+        display: block;
+        margin: 20px 0;
+        font-size: 2em;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      width: 100%;
       text-align: center;
-      max-width: 90vw;
+      padding: 15px 0;
       font-family: "Baskerville", "Times New Roman", serif;
       font-weight: 300;
-      line-height: 1.4;
-    }
-    #lightbox .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      line-height: 1;
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
-      transition: color 0.2s;
-    }
-    #lightbox .close:hover {
-      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="panoramas.html">Panoramas</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-  <main>
-    <section class="gallery-container">
-      <div class="gallery-grid">
-        <img src="images/1.jpg" alt="Uluru at night">
-        <img src="images/2.jpg" alt="Fire and ice">
-        <img src="images/3.jpg" alt="The deep southern sky">
-        <img src="images/4.jpg" alt="Guardian of Matariki">
-        <img src="images/5.jpg" alt="Summer sky over winter wonderland">
-        <img src="images/6.jpg" alt="The volcanic plateau">
-        <!-- Add more images here with good alt text -->
-      </div>
-    </section>
-  </main>
-  <!-- Lightbox -->
-  <div id="lightbox">
-    <span class="close">×</span>
-    <img id="lightbox-img" src="" alt="">
-    <div class="caption" id="lightbox-caption"></div>
+
+<header>
+  <!-- Mobile hamburger menu only -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const closeBtn = document.querySelector('#lightbox .close');
-    document.querySelectorAll('.gallery-grid img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightboxCaption.textContent = img.alt || 'Untitled';
-        lightbox.classList.add('active');
-      });
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="panoramas.html">Panoramas</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ORIGINAL GALLERY MAIN CODE UNTOUCHED -->
+<main>
+  <section class="gallery-container">
+    <div class="gallery-grid">
+      <img src="images/1.jpg" alt="Uluru at night">
+      <img src="images/2.jpg" alt="Fire and ice">
+      <img src="images/3.jpg" alt="The deep southern sky">
+      <img src="images/4.jpg" alt="Guardian of Matariki">
+      <img src="images/5.jpg" alt="Summer sky over winter wonderland">
+      <img src="images/6.jpg" alt="The volcanic plateau">
+      <!-- Add more images here with good alt text -->
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox (unchanged) -->
+<div id="lightbox">
+  <span class="close">×</span>
+  <img id="lightbox-img" src="" alt="">
+  <div class="caption" id="lightbox-caption"></div>
+</div>
+
+<!-- Footer added -->
+<footer>
+  &copy; 2026 Max Inwood
+</footer>
+
+<script>
+  // Mobile hamburger toggle only
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+
+  // Lightbox functionality (unchanged)
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.querySelector('#lightbox .close');
+
+  document.querySelectorAll('.gallery-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = img.alt || 'Untitled';
+      lightbox.classList.add('active');
     });
-    closeBtn.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-      }
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        lightbox.classList.remove('active');
-      }
-    });
-  </script>
+  });
+
+  closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+  lightbox.addEventListener('click', (e) => { if(e.target===lightbox) lightbox.classList.remove('active'); });
+  document.addEventListener('keydown', (e) => { if(e.key==='Escape' && lightbox.classList.contains('active')) lightbox.classList.remove('active'); });
+</script>
+
 </body>
 </html>
