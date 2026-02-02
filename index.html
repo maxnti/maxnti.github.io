@@ -1,124 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maxinwood</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: "Baskerville", "Times New Roman", serif;
-            font-weight: 300;
-            background-color: #333;
-            color: #fdfcf8;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maxinwood</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body {
+    margin: 0;
+    font-family: "Baskerville", "Times New Roman", serif;
+    font-weight: 300;
+    background-color: #333;
+    color: #fdfcf8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-        }
+  header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1000;
+  }
 
-        nav {
-            text-align: center;
-        }
+  nav {
+    text-align: center;
+  }
 
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
+  nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+  }
 
-        nav a:hover {
-            text-decoration: underline;
-            color: #ffd700; /* gold highlight on hover */
-        }
+  nav a:hover {
+    text-decoration: underline;
+    color: #ffd700;
+  }
 
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-        }
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
 
-        main h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
+  main h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
 
-        main p {
-            font-size: 1.3em;
-            max-width: 600px;
-            line-height: 1.8;
-        }
+  main p {
+    font-size: 1.3em;
+    max-width: 600px;
+    line-height: 1.8;
+  }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-        }
+  footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+  }
 
-        /* ===== Mobile styling ===== */
-        @media (max-width: 600px) {
-            main h1 {
-                font-size: 2em;
-            }
+  /* ===== Hamburger ===== */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
 
-            nav {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+  .hamburger span {
+    display: block;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
 
-            nav a {
-                display: block;
-                margin: 10px 0;
-                padding: 10px 0;
-                width: 100%;
-                border-top: 1px solid #444;
-                border-bottom: 1px solid #444;
-                box-sizing: border-box;
-            }
+  /* ===== Mobile ===== */
+  @media (max-width: 600px) {
+    nav {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      background-color: #333;
+      position: absolute;
+      top: 70px; /* header height */
+      left: 0;
+      width: 100%;
+      padding: 10px 0;
+    }
 
-            nav a:last-child {
-                border-bottom: none; /* remove double border on last link */
-            }
-        }
-    </style>
+    nav a {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    /* Slide-in animation */
+    nav.open {
+      display: flex;
+      animation: slideDown 0.3s forwards;
+    }
+
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Hamburger → X */
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="blog.html">Blog</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="panoramas.html">Panoramas</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
 
-    <main>
-        <div>
-            <h1>Photography Max Inwood</h1>
-            <p>
-                A collection of my landscape and astrophotography from around the world
-            </p>
-        </div>
-    </main>
+<header>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="panoramas.html">Panoramas</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-    <footer>
-        &copy; 2026 Max Inwood
-    </footer>
+<main>
+  <div>
+    <h1>Photography Max Inwood</h1>
+    <p>
+      A collection of my landscape and astrophotography from around the world
+    </p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Max Inwood
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+</script>
+
 </body>
 </html>
