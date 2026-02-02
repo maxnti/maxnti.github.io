@@ -18,7 +18,7 @@
       min-height: 100vh;
       line-height: 1.6;
     }
-    /* Header & Navigation – matched exactly to index.html */
+    /* Header & Navigation – matched to index */
     header {
       background-color: #333;
       color: white;
@@ -40,14 +40,14 @@
       text-decoration: underline;
       color: white;
     }
-    /* Gallery container – wider on desktop */
+    /* Gallery container – mid-width compromise */
     main {
-      max-width: 1440px;
+      max-width: 1350px;               /* halfway between 1260 and 1440 */
       margin: 0 auto;
-      padding: 40px 12px;
+      padding: 40px 18px;              /* halfway-ish between 24px and 12px */
     }
     .gallery-container {
-      max-width: 96%;
+      max-width: 93%;                  /* compromise between 90% and 96% */
       margin: 0 auto;
       padding: 40px 0;
     }
@@ -80,7 +80,7 @@
     @media (max-width: 699px) {
       .gallery-grid { column-count: 1; }
     }
-    /* Mobile tweaks – make gallery take up more width */
+    /* Mobile tweaks – keep wide/fuller feel */
     @media (max-width: 900px) {
       .gallery-container {
         max-width: 96%;
@@ -98,13 +98,13 @@
         padding: 20px 8px;
       }
     }
-    /* Optional: On ultra-wide screens (>1600px) */
+    /* Ultra-wide screens – softer pull-back */
     @media (min-width: 1600px) {
       main {
         padding: 40px 20px;
       }
       .gallery-container {
-        max-width: 94%;
+        max-width: 92%;
       }
     }
     /* LIGHTBOX / MODAL */
