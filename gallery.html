@@ -21,8 +21,8 @@
 
   <!-- GALLERY -->
   <main class="page">
-    <section class="gallery-container" style="display:flex; justify-content:center;">
-      <div class="gallery-grid" style="width:66.66%; max-width: 1200px;">
+    <section class="gallery-container">
+      <div class="gallery-grid">
         <img src="images/1.jpg" alt="Photo 1">
         <img src="images/2.jpg" alt="Photo 2">
         <img src="images/3.jpg" alt="Photo 3">
@@ -37,7 +37,7 @@
   <script>
     function masonry() {
       const grid = document.querySelector('.gallery-grid');
-      const gap = 16; // px gap
+      const gap = 16;
       let columnCount;
 
       if (window.innerWidth < 700) {
@@ -73,7 +73,7 @@
   </script>
 
   <style>
-    /* NAVIGATION */
+    /* NAVIGATION (matches landing page) */
     header {
       background-color: #333;
       padding: 20px 0;
@@ -93,25 +93,16 @@
       text-decoration: underline;
     }
 
-    /* Gallery adjustments */
-    .gallery-grid img {
-      margin-bottom: 16px;
-    }
-
-    @media (max-width: 1000px) {
-      .gallery-grid {
-        width: 90%; /* slightly smaller on tablets */
-      }
-    }
-
-    @media (max-width: 700px) {
-      .gallery-grid {
-        width: 95%; /* almost full width on mobile */
-      }
+    @media (max-width: 600px) {
       nav a {
         display: block;
         margin: 10px 0;
       }
+    }
+
+    /* Optional: add side padding without shrinking grid width */
+    .gallery-container {
+      padding: 0 8.33%; /* ~1/6 padding on each side */
     }
   </style>
 
