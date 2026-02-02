@@ -38,15 +38,12 @@ main p {
   line-height: 1.8;
 }
 
-/* Footer styling kept in CSS if desired */
 footer {
   background-color: #333;
   color: white;
   text-align: center;
   padding: 15px 0;
 }
-
-/* Mobile Hamburger & menu styles are in your style.css or can be added here if needed */
 </style>
 </head>
 <body>
@@ -66,27 +63,22 @@ footer {
 <!-- Footer include -->
 <div id="footer-placeholder"></div>
 
+<script src="js/header.js"></script>
 <script>
-  // Load header
+  // Load header then init menu
   fetch('header.html')
     .then(res => res.text())
-    .then(data => document.getElementById('header-placeholder').innerHTML = data)
-    .then(() => {
-      // Re-run the hamburger JS since header content just loaded
-      const hamburger = document.getElementById('hamburger');
-      const nav = document.getElementById('nav');
-      if(hamburger && nav){
-        hamburger.addEventListener('click', () => {
-          hamburger.classList.toggle('open');
-          nav.classList.toggle('open');
-        });
-      }
+    .then(data => {
+      document.getElementById('header-placeholder').innerHTML = data;
+      initHeaderMenu();
     });
 
   // Load footer
   fetch('footer.html')
     .then(res => res.text())
-    .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
 </script>
 
 </body>
