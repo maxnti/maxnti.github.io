@@ -5,6 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | Maxinwood</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* NAVIGATION (matches landing page) */
+    header {
+      background-color: #333;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-family: "Baskerville", "Times New Roman", serif;
+      font-weight: 300;
+      font-size: 1.1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+
+    /* GALLERY FIX */
+    .gallery-container {
+      width: 66.66%; /* 2/3 of page */
+      margin: 40px auto; /* center horizontally */
+    }
+
+    .gallery-grid img {
+      display: block;
+      margin-bottom: 16px;
+      width: 100%; /* let JS/masonry handle column sizing */
+      height: auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -71,35 +112,6 @@
     window.addEventListener('load', masonry);
     window.addEventListener('resize', masonry);
   </script>
-
-  <style>
-    /* NAVIGATION (matches landing page) */
-    header {
-      background-color: #333;
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-family: "Baskerville", "Times New Roman", serif;
-      font-weight: 300;
-      font-size: 1.1em;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-    }
-  </style>
 
 </body>
 </html>
