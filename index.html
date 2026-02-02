@@ -17,32 +17,6 @@ body {
   min-height: 100vh;
 }
 
-header {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  position: relative;
-  z-index: 1000;
-}
-
-nav {
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #ffd700;
-}
-
 main {
   flex: 1;
   display: flex;
@@ -55,6 +29,7 @@ main {
 main h1 {
   font-size: 3em;
   margin-bottom: 20px;
+  font-weight: 300; /* light font */
 }
 
 main p {
@@ -63,6 +38,7 @@ main p {
   line-height: 1.8;
 }
 
+/* Footer styling kept in CSS if desired */
 footer {
   background-color: #333;
   color: white;
@@ -70,117 +46,47 @@ footer {
   padding: 15px 0;
 }
 
-/* Hamburger container */
-.hamburger {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 28px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  background: white;
-  border-radius: 2px;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-/* Position 3 lines */
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.hamburger span:nth-child(3) { bottom: 0; }
-
-/* ===== Mobile menu ===== */
-@media (max-width: 600px) {
-
-  .hamburger { display: block; }
-
-  nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #222;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    text-align: center;
-  }
-
-  nav.open { display: flex; }
-
-  nav a {
-    display: block;
-    margin: 20px 0;
-    font-size: 2em;
-  }
-
-  /* Hamburger → X */
-  .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 50%;
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: 50%;
-  }
-}
+/* Mobile Hamburger & menu styles are in your style.css or can be added here if needed */
 </style>
 </head>
 <body>
 
-<header>
-  <div class="hamburger" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav id="nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="blog.html">Blog</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="panoramas.html">Panoramas</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+<!-- Header include -->
+<div id="header-placeholder"></div>
 
 <main>
   <div>
-    <h1 style="font-weight: 300;">Photography by Max Inwood</h1>
+    <h1>Photography by Max Inwood</h1>
     <p>
       A collection of my landscape and astrophotography from around the world
     </p>
   </div>
 </main>
 
-
-<footer>
-  &copy; 2026 Max Inwood
-</footer>
+<!-- Footer include -->
+<div id="footer-placeholder"></div>
 
 <script>
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('nav');
+  // Load header
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header-placeholder').innerHTML = data)
+    .then(() => {
+      // Re-run the hamburger JS since header content just loaded
+      const hamburger = document.getElementById('hamburger');
+      const nav = document.getElementById('nav');
+      if(hamburger && nav){
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('open');
+          nav.classList.toggle('open');
+        });
+      }
+    });
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  nav.classList.toggle('open');
-});
+  // Load footer
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('footer-placeholder').innerHTML = data);
 </script>
 
 </body>
