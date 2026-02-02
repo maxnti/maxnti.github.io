@@ -20,14 +20,12 @@
   header {
     background-color: #333;
     color: white;
-    padding: 20px 20px;
+    padding: 20px;
     position: relative;
     z-index: 1000;
-    display: flex;
-    justify-content: flex-end; /* hamburger on top-right */
-    align-items: center;
   }
 
+  /* Desktop nav: center */
   nav {
     text-align: center;
   }
@@ -73,7 +71,7 @@
     padding: 15px 0;
   }
 
-  /* ===== Hamburger ===== */
+  /* ===== Hamburger (2 lines) ===== */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -81,6 +79,10 @@
     width: 28px;
     height: 20px;
     cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
   }
 
   .hamburger span {
@@ -93,6 +95,7 @@
 
   /* ===== Mobile menu ===== */
   @media (max-width: 600px) {
+
     nav {
       display: none;
       position: fixed;
@@ -104,7 +107,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 1000;
+      text-align: center;
     }
 
     nav.open {
@@ -119,19 +123,18 @@
 
     .hamburger {
       display: flex;
-      margin-right: 20px;
-      z-index: 1001; /* above menu overlay */
     }
 
-    /* Hamburger → X */
+    /* Hamburger → X (2 lines) */
     .hamburger.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(45deg);
+      position: relative;
+      top: 8px;
     }
     .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+      transform: rotate(-45deg);
+      position: relative;
+      top: -8px;
     }
   }
 </style>
@@ -140,7 +143,6 @@
 
 <header>
   <div class="hamburger" id="hamburger">
-    <span></span>
     <span></span>
     <span></span>
   </div>
