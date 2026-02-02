@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maxinwood</title>
-<link rel="stylesheet" href="css/style.css">
+
 <style>
 body {
   margin: 0;
@@ -46,10 +46,14 @@ nav a:hover {
 main {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding: 60px 20px;
+  padding: 40px 20px 60px;
+}
+
+main .content {
+  margin-top: 40px;
 }
 
 main h1 {
@@ -61,7 +65,15 @@ main h1 {
 main p {
   font-size: 1.3em;
   max-width: 600px;
+  margin: 0 auto;
   line-height: 1.8;
+}
+
+main img {
+  margin-top: 40px;
+  max-width: 90%;
+  height: auto;
+  border-radius: 4px;
 }
 
 footer {
@@ -69,7 +81,7 @@ footer {
   color: white;
   text-align: center;
   padding: 15px 0;
-  margin-bottom: 15px; /* adds extra space below */
+  margin-bottom: 15px;
 }
 
 /* Hamburger */
@@ -128,7 +140,11 @@ footer {
     transform: rotate(45deg);
     top: 50%;
   }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
   .hamburger.open span:nth-child(3) {
     transform: rotate(-45deg);
     top: 50%;
@@ -136,6 +152,7 @@ footer {
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -144,6 +161,7 @@ footer {
     <span></span>
     <span></span>
   </div>
+
   <nav id="nav">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -155,11 +173,13 @@ footer {
 </header>
 
 <main>
-  <div>
+  <div class="content">
     <h1>Photography by Max Inwood</h1>
     <p>
       A collection of my landscape and astrophotography from around the world
     </p>
+
+    <img src="images/7.jpg" alt="Landscape photograph by Max Inwood">
   </div>
 </main>
 
