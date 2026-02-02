@@ -17,6 +17,32 @@ body {
   min-height: 100vh;
 }
 
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  position: relative;
+  z-index: 1000;
+}
+
+nav {
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #ffd700;
+}
+
 main {
   flex: 1;
   display: flex;
@@ -29,7 +55,7 @@ main {
 main h1 {
   font-size: 3em;
   margin-bottom: 20px;
-  font-weight: 300; /* light font */
+  font-weight: 300;
 }
 
 main p {
@@ -44,12 +70,88 @@ footer {
   text-align: center;
   padding: 15px 0;
 }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.hamburger span:nth-child(3) { bottom: 0; }
+
+@media (max-width: 600px) {
+  nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  nav.open { display: flex; }
+
+  nav a {
+    display: block;
+    margin: 20px 0;
+    font-size: 2em;
+  }
+
+  .hamburger { display: block; }
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 50%;
+  }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 50%;
+  }
+}
 </style>
 </head>
 <body>
 
-<!-- Header include -->
-<div id="header-placeholder"></div>
+<header>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav id="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="panoramas.html">Panoramas</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
 <main>
   <div>
@@ -60,25 +162,18 @@ footer {
   </div>
 </main>
 
-<!-- Footer include -->
-<div id="footer-placeholder"></div>
+<footer>
+  &copy; 2026 Max Inwood
+</footer>
 
-<script src="js/header.js"></script>
 <script>
-  // Load header then init menu
-  fetch('header.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('header-placeholder').innerHTML = data;
-      initHeaderMenu();
-    });
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
 
-  // Load footer
-  fetch('footer.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
-    });
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  nav.classList.toggle('open');
+});
 </script>
 
 </body>
