@@ -91,3 +91,24 @@ nav a:hover {
   padding: 40px 20px;
   line-height: 1.6;
 }
+/* ---- Gallery (Wix-style clean grid) ---- */
+
+.gallery-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;          /* DO NOT CHANGE */
+  display: block;
+  object-fit: cover;
+}
+
