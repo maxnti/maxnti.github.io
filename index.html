@@ -1,24 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Photography</title>
-  <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxinwood</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Simple central layout and menu */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px 0;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        main h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        main p {
+            font-size: 1.2em;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        @media (max-width: 600px) {
+            main h1 {
+                font-size: 2em;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="panoramas.html">Panoramas</a>
+        </nav>
+    </header>
 
-  <nav>
-    <a href="./index.html">Home</a>
-    <a href="./gallery.html">Gallery</a>
-    <a href="./panoramas.html">360</a>
-    <a href="./blog.html">Blog</a>
-    <a href="./about.html">About</a>
-  </nav>
+    <main>
+        <div>
+            <h1>Welcome to Maxinwood</h1>
+            <p>
+                This is the home of Maxinwood, where creativity meets innovation. Explore my portfolio, read my blog, view galleries, and enjoy panoramas that bring ideas to life.
+            </p>
+        </div>
+    </main>
 
-  <section class="hero">
-    <h1>My Photography</h1>
-    <p>Night sky & astrophotography</p>
-  </section>
-
+    <footer>
+        &copy; 2026 Maxinwood. All rights reserved.
+    </footer>
 </body>
 </html>
