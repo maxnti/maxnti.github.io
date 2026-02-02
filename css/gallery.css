@@ -62,26 +62,26 @@ body {
 }
 
 /* ==============================
-   Mosaic gallery
+   Centered mosaic gallery (2/3 width)
 ============================== */
 .gallery-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 48px 24px 80px;
+  max-width: 66%;       /* two-thirds of page width */
+  margin: 0 auto;       /* centers it horizontally */
+  padding: 48px 0 80px;
 }
 
 .gallery-grid {
-  column-count: 3;       /* number of columns on desktop */
-  column-gap: 16px;      /* gap between columns */
+  column-count: 3;      /* number of columns on desktop */
+  column-gap: 16px;     /* horizontal gap between images */
 }
 
 .gallery-grid img {
   width: 100%;
   display: block;
-  margin-bottom: 16px;
+  margin: 0;            /* remove extra vertical gaps */
   cursor: pointer;
   transition: transform 0.25s ease, opacity 0.25s ease;
-  break-inside: avoid;   /* keeps each image intact in column */
+  break-inside: avoid;  /* keeps each image intact in column */
 }
 
 .gallery-grid img:hover {
@@ -93,19 +93,22 @@ body {
    Responsive / Mobile
 ============================== */
 @media (max-width: 1000px) {
+  .gallery-container {
+    max-width: 90%;     /* slightly wider on tablet */
+  }
   .gallery-grid {
-    column-count: 2; /* fewer columns on tablet */
+    column-count: 2;
     column-gap: 14px;
   }
 }
 
 @media (max-width: 700px) {
-  .gallery-grid {
-    column-count: 1; /* single column on mobile */
-    column-gap: 0;
-  }
-
   .gallery-container {
+    max-width: 95%;     /* almost full width on mobile */
     padding: 24px 16px 50px;
+  }
+  .gallery-grid {
+    column-count: 1;
+    column-gap: 0;
   }
 }
