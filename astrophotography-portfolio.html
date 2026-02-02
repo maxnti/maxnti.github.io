@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrophotography Portfolio | Max Inwood Photography</title>
+    <meta name="description" content="A collection of my favorite nightscape images from around the world.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Max Inwood Photography">
+            </a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">galleries</a>
+                    <div class="dropdown-content">
+                        <a href="astrophotography-portfolio.html">astrophotography portfolio</a>
+                        <a href="the-night-sky.html">the night sky</a>
+                        <a href="usa-2025.html">USA 2025</a>
+                        <a href="panoramas.html">360</a>
+                    </div>
+                </div>
+                <a href="blog.html">blog</a>
+                <a href="workshops.html">workshops</a>
+                <a href="prints.html">prints</a>
+                <a href="about.html">about</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <div class="gallery-header">
+        <h1>Astrophotography portfolio.</h1>
+        <p class="subtitle">"The night hides a world, but reveals a universe"</p>
+        <p>A collection of my favorite nightscape images from around the world.</p>
+        <p><br>For prints of my images, get in touch <a href="prints.html" style="color: #fff;">here</a>.</p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+        <!-- Add your images here - these are placeholders -->
+        <div class="gallery-item">
+            <img src="images/gallery/astro1.jpg" alt="Milky Way over mountains" onclick="openLightbox(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="images/gallery/astro2.jpg" alt="Night sky photography" onclick="openLightbox(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="images/gallery/astro3.jpg" alt="Astrophotography landscape" onclick="openLightbox(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="images/gallery/astro4.jpg" alt="Starry night" onclick="openLightbox(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="images/gallery/astro5.jpg" alt="Galaxy photography" onclick="openLightbox(this.src)">
+        </div>
+        <div class="gallery-item">
+            <img src="images/gallery/astro6.jpg" alt="Night landscape" onclick="openLightbox(this.src)">
+        </div>
+        <!-- Add more images as needed -->
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© Max Inwood 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

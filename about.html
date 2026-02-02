@@ -1,4 +1,73 @@
-<div class="page">
-  <h1>About</h1>
-  <p>Your bio text here.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Max Inwood Photography</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Max Inwood Photography">
+            </a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">galleries</a>
+                    <div class="dropdown-content">
+                        <a href="astrophotography-portfolio.html">astrophotography portfolio</a>
+                        <a href="the-night-sky.html">the night sky</a>
+                        <a href="usa-2025.html">USA 2025</a>
+                        <a href="panoramas.html">360</a>
+                    </div>
+                </div>
+                <a href="blog.html">blog</a>
+                <a href="workshops.html">workshops</a>
+                <a href="prints.html">prints</a>
+                <a href="about.html">about</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Content -->
+    <div class="about-container">
+        <h1>about.</h1>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h5>Hello! I'm a 25 y/o amateur astrophotographer, based in New Zealand's South Island. After graduating in 2022 with a bachelor's in engineering, I decided to take a different path and pursue my passion for astronomy in the Aoraki/Mackenzie international dark sky reserve, where I've been working for over two years.</h5>
+                <h5>Prints: prints are by request. Please send a message through my <a href="prints.html" style="color: #fff;">print page</a>, detailing which photo/size etc. you would like.</h5>
+            </div>
+            <div class="profile-image">
+                <img src="images/profile.jpg" alt="Max Inwood">
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h5>My work has been featured by:</h5>
+            <div class="features-logos">
+                <img src="images/features.png" alt="Featured publications">
+            </div>
+        </div>
+
+        <h5 style="margin: 40px 0 20px 0;">This website is mostly just a personal project, but feel free to get in touch below.</h5>
+
+        <form class="contact-form" id="contact-form">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Write a message" required></textarea>
+            <button type="submit">Send</button>
+            <p id="form-message" style="margin-top: 10px; color: #4CAF50; display: none;">sent!</p>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© Max Inwood 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
