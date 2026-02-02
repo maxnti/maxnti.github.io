@@ -20,7 +20,7 @@
       line-height: 1.6;
     }
 
-    /* Header & Navigation – matched to index.html style */
+    /* Header & Navigation */
     header {
       background-color: #333;
       color: white;
@@ -68,15 +68,14 @@
       border-radius: 4px;
       break-inside: avoid-column;
       page-break-inside: avoid;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+      transition: transform 0.25s ease;
       cursor: pointer;
     }
     .gallery-grid img:hover {
       transform: scale(1.03);
-      opacity: 1;
     }
 
-    /* Force TWO columns on desktop/web */
+    /* Two-column masonry on desktop */
     @media (min-width: 1000px) {
       .gallery-grid { column-count: 2; }
     }
@@ -89,28 +88,65 @@
 
     /* Mobile tweaks */
     @media (max-width: 900px) {
-      .gallery-container {
-        max-width: 94%;
-        padding: 30px 16px;
-      }
-      nav a {
-        margin: 0 12px;
-        font-size: 1em;
-      }
+      .gallery-container { max-width: 94%; padding: 30px 16px; }
+      nav a { margin: 0 12px; font-size: 1em; }
     }
     @media (max-width: 600px) {
-      nav {
-        padding: 10px;
-      }
-      nav a {
-        display: inline-block;
-        margin: 8px 10px;
-      }
+      nav { padding: 10px; }
+      nav a { display: inline-block; margin: 8px 10px; }
+    }
+
+    /* ───────────────────────────────────────────────
+       LIGHTBOX / MODAL STYLES
+    ──────────────────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    #lightbox.active {
+      display: flex;
+    }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    #lightbox .caption {
+      color: #eee;
+      font-size: 1.2rem;
+      margin-top: 16px;
+      text-align: center;
+      max-width: 90vw;
+    }
+    #lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      transition: color 0.2s;
+    }
+    #lightbox .close:hover {
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation – identical style to index.html -->
+
+  <!-- Navigation -->
   <header>
     <nav>
       <a href="index.html">Home</a>
@@ -121,19 +157,62 @@
     </nav>
   </header>
 
-  <!-- Main content -->
+  <!-- Gallery -->
   <main>
     <section class="gallery-container">
       <div class="gallery-grid">
-        <img src="images/1.jpg" alt="Photo 1">
-        <img src="images/2.jpg" alt="Photo 2">
-        <img src="images/3.jpg" alt="Photo 3">
-        <img src="images/4.jpg" alt="Photo 4">
-        <img src="images/5.jpg" alt="Photo 5">
-        <img src="images/6.jpg" alt="Photo 6">
-        <!-- Add more <img> tags here as needed -->
+        <img src="images/1.jpg" alt="Milky Way over Uluru at dusk">
+        <img src="images/2.jpg" alt="Aurora Australis above Tasman Glacier">
+        <img src="images/3.jpg" alt="Milky Way rising over Lake Tekapo">
+        <img src="images/4.jpg" alt="Star trails and tree silhouette">
+        <img src="images/5.jpg" alt="Carina Nebula region">
+        <img src="images/6.jpg" alt="Aurora and Milky Way composite">
+        <!-- Add more images here with meaningful alt text -->
       </div>
     </section>
   </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <span class="close">×</span>
+    <img id="lightbox-img" src="" alt="">
+    <div class="caption" id="lightbox-caption"></div>
+  </div>
+
+  <!-- JavaScript for lightbox -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('#lightbox .close');
+
+    // Open lightbox
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.alt || 'Untitled';
+        lightbox.classList.add('active');
+      });
+    });
+
+    // Close lightbox
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+      }
+    });
+  </script>
+
 </body>
 </html>
