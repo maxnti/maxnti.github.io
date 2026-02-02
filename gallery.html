@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION (new menu, matches landing page) -->
   <header>
     <nav>
       <a href="index.html">Home</a>
@@ -19,7 +19,7 @@
     </nav>
   </header>
 
-  <!-- GALLERY -->
+  <!-- GALLERY (exactly as before) -->
   <main class="page">
     <section class="gallery-container">
       <div class="gallery-grid">
@@ -33,7 +33,7 @@
     </section>
   </main>
 
-  <!-- MASONRY JS -->
+  <!-- MASONRY JS (unchanged) -->
   <script>
     function masonry() {
       const grid = document.querySelector('.gallery-grid');
@@ -73,7 +73,7 @@
   </script>
 
   <style>
-    /* NAVIGATION (matches landing page) */
+    /* NAVIGATION STYLES */
     header {
       background-color: #333;
       padding: 20px 0;
@@ -98,11 +98,6 @@
         display: block;
         margin: 10px 0;
       }
-    }
-
-    /* Optional: add side padding without shrinking grid width */
-    .gallery-container {
-      padding: 0 8.33%; /* ~1/6 padding on each side */
     }
   </style>
 
