@@ -39,7 +39,10 @@ nav a {
 }
 
 nav a:hover,
-nav a.active { text-decoration: underline; color: #ffd700; }
+nav a.active {
+  text-decoration: underline;
+  color: white; /* hover stays white */
+}
 
 /* Hamburger */
 .hamburger {
@@ -111,12 +114,24 @@ main {
 }
 
 @media (max-width: 600px) {
-  nav { padding: 10px; display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
+  nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
   nav.open { display: flex; }
   nav a { display: block; margin: 20px 0; font-size: 2em; }
   .hamburger { display: block; }
 }
 
+footer {
+  background-color: #333;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+}
+
+/* Lightbox */
 #lightbox {
   display: none;
   position: fixed;
