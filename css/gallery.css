@@ -1,6 +1,4 @@
-/* ==============================
-   Base styles
-============================== */
+/* Base styles */
 body {
   margin: 0;
   background-color: #111;
@@ -9,15 +7,12 @@ body {
                Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* ==============================
-   Navigation
-============================== */
+/* Navigation */
 .nav {
   width: 100%;
   background: #111;
   border-bottom: 1px solid #222;
 }
-
 .nav-inner {
   max-width: 1400px;
   margin: 0 auto;
@@ -27,45 +22,37 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
 .nav-logo {
   text-decoration: none;
   color: #eee;
   font-size: 1.2rem;
   letter-spacing: 0.05em;
 }
-
 .nav-links {
   list-style: none;
   display: flex;
   gap: 32px;
 }
-
 .nav-links a {
   text-decoration: none;
   color: #aaa;
   font-size: 0.95rem;
 }
-
 .nav-links a:hover,
 .nav-links a.active {
   color: #fff;
 }
 
-/* ==============================
-   Page container
-============================== */
+/* Page container */
 .page {
   max-width: 1400px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
 
-/* ==============================
-   Gallery container
-============================== */
+/* Gallery container */
 .gallery-container {
-  max-width: 66%;       /* 2/3 page width */
+  max-width: 66%;
   margin: 0 auto;
   padding: 48px 0 80px;
 }
@@ -81,9 +68,7 @@ body {
   opacity: 0.9;
 }
 
-/* ==============================
-   Responsive
-============================== */
+/* Responsive */
 @media (max-width: 1000px) {
   .gallery-container {
     max-width: 90%;
