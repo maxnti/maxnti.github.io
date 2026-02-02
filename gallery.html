@@ -44,7 +44,7 @@ nav a.active {
   color: white; /* hover stays white */
 }
 
-/* Hamburger */
+/* Mobile hamburger from index.html */
 .hamburger {
   display: none;
   position: fixed;
@@ -54,6 +54,9 @@ nav a.active {
   height: 20px;
   cursor: pointer;
   z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hamburger span {
@@ -61,15 +64,20 @@ nav a.active {
   height: 3px;
   background: white;
   border-radius: 2px;
-  position: absolute;
-  left: 0;
-  width: 100%;
   transition: all 0.3s ease;
 }
 
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.hamburger span:nth-child(3) { bottom: 0; }
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
 main {
   flex: 1;
@@ -104,6 +112,7 @@ main {
 
 .gallery-grid img:hover { transform: scale(1.02); }
 
+/* Masonry columns */
 @media (min-width: 1000px) { .gallery-grid { column-count: 2; } }
 @media (min-width: 700px) and (max-width: 999px) { .gallery-grid { column-count: 2; } }
 @media (max-width: 699px) { .gallery-grid { column-count: 1; } }
@@ -114,10 +123,22 @@ main {
 }
 
 @media (max-width: 600px) {
-  nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
+  nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
   nav.open { display: flex; }
   nav a { display: block; margin: 20px 0; font-size: 2em; }
-  .hamburger { display: block; }
+  .hamburger { display: flex; }
 }
 
 footer {
@@ -131,7 +152,6 @@ footer {
   padding: 15px 0;
 }
 
-/* Lightbox */
 #lightbox {
   display: none;
   position: fixed;
@@ -222,7 +242,7 @@ footer {
 </div>
 
 <script>
-// Hamburger toggle
+// Hamburger toggle (from index.html)
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
 hamburger.addEventListener('click', () => {
