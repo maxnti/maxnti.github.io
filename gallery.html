@@ -25,15 +25,47 @@
   <main class="page">
     <section class="gallery-container">
       <div class="gallery-grid">
-        <img src="images/1.jpg" alt="">
-        <img src="images/2.jpg" alt="">
-        <img src="images/3.jpg" alt="">
-        <img src="images/4.jpg" alt="">
-        <img src="images/5.jpg" alt="">
-        <img src="images/6.jpg" alt="">
+        <img src="images/1.jpg" alt="Photo 1">
+        <img src="images/2.jpg" alt="Photo 2">
+        <img src="images/3.jpg" alt="Photo 3">
+        <img src="images/4.jpg" alt="Photo 4">
+        <img src="images/5.jpg" alt="Photo 5">
+        <img src="images/6.jpg" alt="Photo 6">
       </div>
     </section>
   </main>
+
+  <!-- MASONRY JS -->
+  <script>
+    function masonry() {
+      const grid = document.querySelector('.gallery-grid');
+      const gap = 16; // gap in px
+      const columnCount = window.innerWidth < 700 ? 1 : window.innerWidth < 1000 ? 2 : 3;
+      const columns = Array.from({length: columnCount}, () => 0);
+      const imgs = grid.querySelectorAll('img');
+
+      imgs.forEach(img => {
+        img.style.position = 'absolute';
+      });
+
+      const gridWidth = grid.clientWidth;
+      const colWidth = (gridWidth - gap * (columnCount - 1)) / columnCount;
+
+      imgs.forEach(img => {
+        img.style.width = colWidth + 'px';
+        const minCol = columns.indexOf(Math.min(...columns));
+        img.style.left = (colWidth + gap) * minCol + 'px';
+        img.style.top = columns[minCol] + 'px';
+        columns[minCol] += img.height + gap;
+      });
+
+      grid.style.position = 'relative';
+      grid.style.height = Math.max(...columns) + 'px';
+    }
+
+    window.addEventListener('load', masonry);
+    window.addEventListener('resize', masonry);
+  </script>
 
 </body>
 </html>
