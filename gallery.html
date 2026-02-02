@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery | Maxinwood</title>
-  
+ 
   <style>
     /* Reset & base */
     * {
@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
     }
-
     body {
       background-color: #111;
       color: #eee;
@@ -27,7 +26,6 @@
       border-bottom: 1px solid #222;
       width: 100%;
     }
-
     .nav-inner {
       max-width: 1400px;
       margin: 0 auto;
@@ -37,7 +35,6 @@
       gap: 48px;
       flex-wrap: wrap;
     }
-
     nav a {
       color: #aaa;
       text-decoration: none;
@@ -45,7 +42,6 @@
       text-transform: lowercase;
       transition: color 0.2s;
     }
-
     nav a:hover,
     nav a.active {
       color: #fff;
@@ -57,34 +53,55 @@
       margin: 0 auto;
       padding: 40px 24px;
     }
-
     .gallery-container {
       max-width: 90%;
       margin: 0 auto;
       padding: 40px 0;
     }
-
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 20px;
+      column-gap: 20px;
+      orphans: 1;   /* helps avoid tiny orphans at bottom of columns */
+      widows: 1;
     }
-
     .gallery-grid img {
       width: 100%;
       height: auto;
       display: block;
+      margin-bottom: 20px;          /* controls vertical spacing between images */
       border-radius: 4px;
+      break-inside: avoid-column;   /* critical: prevents image breaking across columns */
+      page-break-inside: avoid;     /* for print/pdf if ever needed */
       transition: transform 0.25s ease, opacity 0.25s ease;
       cursor: pointer;
     }
-
     .gallery-grid img:hover {
       transform: scale(1.03);
       opacity: 0.92;
     }
 
-    /* Responsive adjustments */
+    /* Start with 3–4 columns on wide screens; adjust as needed */
+    @media (min-width: 1400px) {
+      .gallery-grid {
+        column-count: 4;
+      }
+    }
+    @media (min-width: 1000px) and (max-width: 1399px) {
+      .gallery-grid {
+        column-count: 3;
+      }
+    }
+    @media (min-width: 700px) and (max-width: 999px) {
+      .gallery-grid {
+        column-count: 2;
+      }
+    }
+    @media (max-width: 699px) {
+      .gallery-grid {
+        column-count: 1;
+      }
+    }
+
+    /* Your existing responsive tweaks */
     @media (max-width: 900px) {
       .gallery-container {
         max-width: 94%;
@@ -95,22 +112,16 @@
         gap: 32px;
       }
     }
-
     @media (max-width: 600px) {
       .nav-inner {
         flex-direction: column;
         gap: 20px;
         padding: 20px 16px;
       }
-      .gallery-grid {
-        gap: 16px;
-      }
     }
   </style>
 </head>
-
 <body>
-
   <!-- Navigation -->
   <header>
     <div class="nav-inner">
@@ -138,6 +149,5 @@
       </div>
     </section>
   </main>
-
 </body>
 </html>
